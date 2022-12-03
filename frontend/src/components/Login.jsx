@@ -1,9 +1,17 @@
 import { useState } from "react"
 import { FaArrowLeft } from "react-icons/fa"
+import {useNavigate} from "react-router-dom"
 
 function Login() {
 
     const [fade, setFade] = useState(false)
+    const [username, setUsername] = useState()
+
+    const navigate = useNavigate()
+
+    const handleUsername = e => {
+        setUsername(e.target.value)
+    }
 
     return <div className="register">
 
@@ -21,11 +29,11 @@ function Login() {
                     </div>
 
                     <div className="form-group">
-                        <input type="email" className="form-control" placeholder="Email" />
+                        <input type="email" className="form-control" placeholder="Email" value={username} onChange={handleUsername}/>
                     </div>
 
                     <div className="form-group">
-                        <p className="card-footer">No account? <span>Create one!</span></p>
+                        <p className="card-footer">No account? <span onClick={() => navigate("/register")}>Create one!</span></p>
                     </div>
 
                     <div className="form-group">
@@ -49,7 +57,7 @@ function Login() {
                                 <FaArrowLeft className="arrow" onClick={() => setFade(prevState => !prevState)}/>
                             {/* </div> */}
                             <div className="current-user">
-                                <p>me@hotmail.com</p>
+                                <p>{username}</p>
                             </div>
                         </div>
                     </div>

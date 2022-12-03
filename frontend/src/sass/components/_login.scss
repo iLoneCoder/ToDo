@@ -5,7 +5,9 @@
     height: 100vh;
     background-image: linear-gradient(-45deg, rgb(250, 224, 224), rgb(196, 196, 196), rgb(250, 224, 224));
 
+
     .card {
+        position: relative;
         background-color: white;
         width: 450px;
         height: 350px;
@@ -13,6 +15,18 @@
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.308);
         border-radius: 5px;
 
+        .loading {
+            position: absolute;
+            width: 20%;
+            height: 1px;
+            background-color: rgb(70, 70, 253);
+            margin-top: -20px;
+            box-shadow: 1px 1px 8px blue;
+            left: 0;
+            animation-name: isLoading;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
 
         .card-title {
             padding: 20px;
@@ -33,36 +47,56 @@
                     margin-bottom: 20px;
                     font-size: 20px;
 
-                    .form-control {
-                        width: 100%;
-                        padding: 8px 0;
-                        font-size: 14px;
-                        border: none;
-                        border-bottom: 1px solid blue;
+                    .dropdown {
+                        position: relative;
+                        margin-left: 10px;
+                        // background-color: red;
+                        font-size: 15px;
+                        display: inline-block;
+                        border-bottom: 1px solid black;
+                        cursor: pointer;
 
-                        &:focus {
-                            outline: none;
-                            border-bottom: 1px solid black;
+                        label {
+                            display: flex;
+                            align-items: center;
+                            cursor: pointer;
+                            height: 100%;
                         }
-                    }
 
-                    .card-footer {
-                        font-size: 13px;
 
-                        span {
-                            color: rgb(15, 132, 172);
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            top: 35px;
+                            font-size: 15px;
+                            border: 1px solid black;
 
-                            &:hover {
-                                cursor: pointer;
-                                color: rgb(156, 156, 156);
-                                text-decoration: underline;
+                            .content-item {
+                                padding: 2px;
+
+                                &:hover {
+                                    background-color: rgb(66, 148, 66);
+                                }
                             }
+
                         }
 
+                        #tail-dot {
+                            display: none;
+                        }
 
+                        #tail-dot:checked~.dropdown-content {
+                            display: block;
+                        }
                     }
 
 
+
+
+                }
+
+                .btn-container-for-register {
+                    margin-top: 48px;
                 }
 
                 .btn-container {
@@ -90,7 +124,7 @@
             .card-body-password {
                 transition: all 0.25s;
                 position: absolute;
-                top: 0;
+                top: -150px;
                 padding: 0 20px 20px 20px;
                 // width: 0;
                 // opacity: 0;
@@ -98,6 +132,7 @@
                 right: -395px;
                 opacity: 0;
                 width: 20%;
+                transform: scale(0.7);
 
                 .arrow-current-user {
                     display: flex;
@@ -122,14 +157,6 @@
                     }
                 }
 
-                .form-control {
-                    width: 100%;
-
-                    &:focus {
-                        outline: none;
-                        border-bottom: 1px solid black;
-                    }
-                }
 
                 .btn-container {
                     display: flex;
@@ -152,7 +179,7 @@
 
             #dot:checked~.card-body-username {
 
-                position: absolute;
+                // position: absolute;
 
                 margin-left: -50px;
                 margin-right: 50px;
@@ -162,9 +189,11 @@
 
             #dot:checked~.card-body-password {
                 opacity: 1;
+                top: 0;
                 left: 0;
                 right: 0;
                 width: 100%;
+                transform: scale(1);
 
                 .btn {
                     padding: 5px 30px;
@@ -175,5 +204,19 @@
 
         }
 
+        @keyframes isLoading {
+            from {
+                left: 0
+            }
+
+            to {
+                left: 80%
+            }
+        }
+    }
+
+    .card-lg {
+        height: 540px;
+        // background-color: green;
     }
 }
