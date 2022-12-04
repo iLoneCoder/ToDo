@@ -1,6 +1,15 @@
 const express = require("express")
+const mongoose = require("mongoose")
+require("dotenv").config()
+const authRouter = require("./routes/auth")
+
 const app = express()
-const PORT = 8080
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+app.use("/", authRouter)
 
 
-app.listen(PORT, () => console.log(`server is running on ${PORT} port`))
+mongoose.connect("mongodb+srv://Node:BFrfGKWiG1IocauG@cluster0.ldu39.mongodb.net/todo", () => {
+    app.listen(process.env.PORT, () => console.log(`server is running on ${process.env.PORT} port`))
+})
